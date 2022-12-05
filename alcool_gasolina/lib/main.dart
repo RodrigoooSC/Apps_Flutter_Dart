@@ -24,7 +24,8 @@ class _HomeState extends State<Home> {
     alcoolController.text = "";
     gasolinaController.text = "";
     setState(() {
-      _resultado = "Informe os valores";
+      _resultado = "Informe os valores";      
+      _formKey = GlobalKey<FormState>();
     });
   }
 
