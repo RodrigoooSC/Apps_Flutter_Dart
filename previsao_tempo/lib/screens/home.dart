@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 
-import 'package:http/http.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:http/http.dart' as http;
 
 import '../model/tempoModel.dart';
 import '../widgets/tempo_widgets.dart';
@@ -50,9 +52,7 @@ class _HomeState extends State<Home> {
 
   String _cidadeSelecionada = "São Paulo";
   
-  get http => null;
-
-
+  
   @override
   void initState() {
     super.initState();
@@ -68,10 +68,9 @@ class _HomeState extends State<Home> {
     String lang = 'pt_br'; //Linguagem
     String units = 'metric'; // Conversão de temperatura
 
-   
-    final tempoReponse = await http.get(
+   final tempoReponse = await http.get(
         'https://api.openweathermap.org/data/2.5/weather?q=$_cidadeSelecionada&appid=$appid&units=$units&lang=$lang');
-
+ 
     print('Url montada: ' + tempoReponse.request.url.toString());
 
     if (tempoReponse.statusCode == 200) {
@@ -81,6 +80,7 @@ class _HomeState extends State<Home> {
       });
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +92,8 @@ class _HomeState extends State<Home> {
       body: Center(
         child: Column(
           children: [
+
+            // Mudar componente
             SearchableDropdown.single(
               items: _cidades
                   .map((e) => DropdownMenuItem(value: e, child: Text(e)))
@@ -108,6 +110,9 @@ class _HomeState extends State<Home> {
               isExpanded: true,
               closeButton: "Fechar",
             ),
+ 
+
+            
             Expanded(
                 child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
